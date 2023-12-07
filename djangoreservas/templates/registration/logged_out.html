@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="alert alert-danger">
+    Sesion Cerrada
+</div>
+<a class="btn btn-success" href="{% url 'login' %}">
+    clic para ingresar nuevamente
+</a>
+{% endblock %}

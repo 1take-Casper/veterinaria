@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+    <p>Tu usuario y password no coinciden.
+        Por favor intentalo nuevamente
+    </p>
+    {% endif %}
+
+    {% if next %}
+    {% if user.is_authenticated %}
+    <p>Tu cuenta no tiene acceso a esta página. 
+        Para continuar inicia sesión con una cuenta que tenga acceso</p>
+    {% else %}
+    <p>Por favor inicia sesión para acceder a esta página</p>
+    {% endif %}
+    {% endif %}
+
+    <form method="post" class="form-signin w-100 m-auto" action="{% url 'login' %}">
+        {% csrf_token %}
+        <!-- <img class="mb-4" src="" alt="" width="72" height="72"> -->
+        <h1 class="h3 mb-3 font-weight-normal">Autentificación</h1>
+        <label for="inputEmail" class="sr-only">{{ form.username.label_tag }}</label>
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Nombre de usuario" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" value="login">Sign in</button>
+        <input type="hidden" name="next" value="{{ next }}"/>
+
+        <p class="mt-5 mb-3 text-muted">&copy; 2022-2022</p>
+    </form>
+{% endblock %}
